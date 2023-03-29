@@ -21,8 +21,17 @@ gallery.classList.add("gallery");
 })();
 
 gallery.addEventListener("click", onClick);
+// document.addEventListener("keydown", onEsc);
+
+// const adress = onClick(event).target.closest(".js-card");
+// const { source } = adress.dataset;
+// const data = galleryItems.find(
+//   ({ original }) =>
+//     original === onClick(event).target.closest(".js-card").dataset
+// );
 
 function onClick(event) {
+  event.preventDefault();
   if (!event.target.classList.contains("js-target")) {
     return;
   }
@@ -30,7 +39,6 @@ function onClick(event) {
   const adress = event.target.closest(".js-card");
   const { source } = adress.dataset;
   const data = galleryItems.find(({ original }) => original === source);
-
   const instance = basicLightbox.create(`
       <img
         class="gallery__image"
@@ -39,6 +47,15 @@ function onClick(event) {
         alt=${data.description}
       />
   `);
-
   instance.show();
+
+  document.addEventListener("keydown", onEsc);
+
+  function onEsc(event) {
+    const modal = document.querySelector(".basicLightbox");
+
+    if (event.key === "Escape" && modal) {
+      instance.close();
+    }
+  }
 }
