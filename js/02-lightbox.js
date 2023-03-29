@@ -16,10 +16,8 @@ gallery.classList.add("gallery");
 })();
 
 var lightbox = new SimpleLightbox(".gallery a", {
-  /* options */
-});
-// console.log(lightbox);
-
-lightbox.on("change.simplelightbox", function (e) {
-  console.log(e); // Some usefull information
+  captionSelector: "img",
+  captionDelay: 250,
+  captionsData: "alt",
+  captionPosition: "bottom",
 });
