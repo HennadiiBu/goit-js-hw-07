@@ -21,14 +21,6 @@ gallery.classList.add("gallery");
 })();
 
 gallery.addEventListener("click", onClick);
-// document.addEventListener("keydown", onEsc);
-
-// const adress = onClick(event).target.closest(".js-card");
-// const { source } = adress.dataset;
-// const data = galleryItems.find(
-//   ({ original }) =>
-//     original === onClick(event).target.closest(".js-card").dataset
-// );
 
 function onClick(event) {
   event.preventDefault();
