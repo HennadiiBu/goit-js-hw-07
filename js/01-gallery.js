@@ -31,17 +31,33 @@ function onClick(event) {
   const adress = event.target.closest(".js-card");
   const { source } = adress.dataset;
   const data = galleryItems.find(({ original }) => original === source);
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
       <img
         class="gallery__image"
         src=${data.original}
        
         alt=${data.description}
       />
-  `);
+  `,
+    {
+      /*
+       * Function that gets executed before the lightbox will be shown.
+       * Returning false will prevent the lightbox from showing.
+       */
+      onShow: (instance) => {
+        document.addEventListener("keydown", onEsc);
+      },
+      /*
+       * Function that gets executed before the lightbox closes.
+       * Returning false will prevent the lightbox from closing.
+       */
+      onClose: (instance) => {
+        document.removeEventListener("keydown", onEsc);
+      },
+    }
+  );
   instance.show();
-
-  document.addEventListener("keydown", onEsc);
 
   function onEsc(event) {
     const modal = document.querySelector(".basicLightbox");

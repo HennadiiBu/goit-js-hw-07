@@ -2,7 +2,8 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
 const gallery = document.querySelector(".gallery");
-gallery.classList.add("gallery");
+// gallery.classList.add("gallery");
+
 (function () {
   const markup = galleryItems.map(
     (image) =>
